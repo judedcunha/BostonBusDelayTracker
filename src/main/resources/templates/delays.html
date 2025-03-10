@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Same head as index.html -->
+</head>
+<body>
+    <!-- Reuse navbar from index.html -->
+    
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            Delays for Route: [[${selectedRoute}]]
+                            <a href="/" class="btn btn-secondary float-end">Back</a>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Route</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="delay : ${delays}">
+                                    <td>[[${delay.title}]]</td>
+                                    <td>[[${delay.description}]]</td>
+                                    <td>
+                                        <span class="badge bg-danger">Delayed</span>
+                                    </td>
+                                </tr>
+                                <tr th:if="${delays.empty}">
+                                    <td colspan="3" class="text-center">No current delays</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

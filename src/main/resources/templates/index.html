@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Boston Bus Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">MBTA Bus Tracker</a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Search Delays</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="delayForm" action="/delays" method="get">
+                            <div class="mb-3">
+                                <label class="form-label">Enter Route Number (optional):</label>
+                                <input type="text" class="form-control" id="routeInput" name="route" 
+                                       placeholder="e.g., 1, 66, or leave blank for all">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Check Delays</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5 class="card-title">Recent Searches</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li th:each="search : ${recentSearches}" 
+                                class="list-group-item d-flex justify-content-between align-items-center">
+                                Route [[${search.routeId}]]
+                                <span class="badge bg-primary rounded-pill">
+                                    [[${search.delayCount}]] delays
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <!-- Delays content will be loaded here -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+<script>
+    document.getElementById('delayForm').addEventListener('submit', function(event) {
+        const routeInput = document.getElementById('routeInput').value.trim();
+        if (!routeInput) {
+            // If the input is blank, navigate to /delays without query parameters
+            window.location.href = '/delays';
+            event.preventDefault(); // Prevent form submission
+        }
+    });
+</script>
