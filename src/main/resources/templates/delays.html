@@ -75,7 +75,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <!-- MBTA logo -->
-                <img src="MBTA.svg.png" alt="MBTA Logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/MBTA.svg/2048px-MBTA.svg.png" alt="Ⓣ">
                 MBTA Bus Tracker
             </a>
         </div>
@@ -96,14 +96,12 @@
                             <thead>
                                 <tr>
                                     <th>Route</th>
-                                    <th>Description</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr th:each="delay : ${delays}">
                                     <td>[[${delay.title}]]</td>
-                                    <td>[[${delay.description}]]</td>
                                     <td>
                                         <span class="badge">Delayed</span>
                                     </td>
