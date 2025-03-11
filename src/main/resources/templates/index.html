@@ -5,17 +5,80 @@
     <title>Boston Bus Tracker</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link th:href="@{/css/style.css}" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .navbar {
+            background-color: #0033a0 !important; /* MBTA Blue */
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #ffffff !important;
+        }
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .container {
+            max-width: 1200px;
+            margin-top: 80px; /* To account for the fixed navbar */
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #0033a0; /* MBTA Blue */
+            color: #ffffff;
+            border-radius: 10px 10px 0 0;
+        }
+        .btn-primary {
+            background-color: #d41b2c; /* MBTA Red */
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #a3151f; /* Darker Red */
+        }
+        .list-group-item {
+            border: none;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .badge {
+            background-color: #0033a0; /* MBTA Blue */
+        }
+        .form-control {
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="#">MBTA Bus Tracker</a>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <!-- MBTA logo -->
+                <img src="MBTA.svg.png" alt="MBTA Logo">
+                MBTA Bus Tracker
+            </a>
         </div>
     </nav>
 
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-4">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="row w-100 justify-content-center">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title">Search Delays</h5>
@@ -27,7 +90,7 @@
                                 <input type="text" class="form-control" id="routeInput" name="route" 
                                        placeholder="e.g., 1, 66, or leave blank for all">
                             </div>
-                            <button type="submit" class="btn btn-primary">Check Delays</button>
+                            <button type="submit" class="btn btn-primary w-100">Check Delays</button>
                         </form>
                     </div>
                 </div>
@@ -41,7 +104,7 @@
                             <li th:each="search : ${recentSearches}" 
                                 class="list-group-item d-flex justify-content-between align-items-center">
                                 Route [[${search.routeId}]]
-                                <span class="badge bg-primary rounded-pill">
+                                <span class="badge rounded-pill">
                                     [[${search.delayCount}]] delays
                                 </span>
                             </li>
@@ -49,24 +112,18 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="col-md-8">
-                <!-- Delays content will be loaded here -->
-            </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('delayForm').addEventListener('submit', function(event) {
+            const routeInput = document.getElementById('routeInput').value.trim();
+            if (!routeInput) {
+                // If the input is blank, navigate to /delays without query parameters
+                window.location.href = '/delays';
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    </script>
 </body>
 </html>
-
-
-
-<script>
-    document.getElementById('delayForm').addEventListener('submit', function(event) {
-        const routeInput = document.getElementById('routeInput').value.trim();
-        if (!routeInput) {
-            // If the input is blank, navigate to /delays without query parameters
-            window.location.href = '/delays';
-            event.preventDefault(); // Prevent form submission
-        }
-    });
-</script>

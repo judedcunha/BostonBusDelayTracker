@@ -1,11 +1,86 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!-- Same head as index.html -->
+    <meta charset="UTF-8">
+    <title>Delays - MBTA Bus Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #0033a0 !important; /* MBTA Blue */
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #ffffff !important;
+        }
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .container {
+            max-width: 1200px;
+            margin-top: 80px; /* To account for the fixed navbar */
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #0033a0; /* MBTA Blue */
+            color: #ffffff;
+            border-radius: 10px 10px 0 0;
+        }
+        .btn-secondary {
+            background-color: #d41b2c; /* MBTA Red */
+            border: none;
+        }
+        .btn-secondary:hover {
+            background-color: #a3151f; /* Darker Red */
+        }
+        .table {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .table thead {
+            background-color: #0033a0; /* MBTA Blue */
+            color: #ffffff;
+        }
+        .table th, .table td {
+            padding: 12px;
+            text-align: left;
+        }
+        .table tbody tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+        .table tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .badge {
+            background-color: #d41b2c; /* MBTA Red */
+            padding: 8px 12px;
+            border-radius: 20px;
+        }
+        .text-center {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <!-- Reuse navbar from index.html -->
-    
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <!-- MBTA logo -->
+                <img src="MBTA.svg.png" alt="MBTA Logo">
+                MBTA Bus Tracker
+            </a>
+        </div>
+    </nav>
+
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-12">
@@ -30,7 +105,7 @@
                                     <td>[[${delay.title}]]</td>
                                     <td>[[${delay.description}]]</td>
                                     <td>
-                                        <span class="badge bg-danger">Delayed</span>
+                                        <span class="badge">Delayed</span>
                                     </td>
                                 </tr>
                                 <tr th:if="${delays.empty}">
