@@ -7,6 +7,14 @@
 
 The **Boston Bus Delay Tracker** is a Spring Boot application that allows users to check real-time bus delays in Boston using data from the MBTA API. It provides a user-friendly interface to view delays for all routes or a specific route, along with a search history feature.
 
+![image](https://github.com/user-attachments/assets/2cf974d9-a7d4-4a4b-935e-6c3cb038fd64)
+
+![image](https://github.com/user-attachments/assets/af62f5f6-c133-4f5f-8638-76913d72060e)
+
+![image](https://github.com/user-attachments/assets/645b1d50-2ca8-47ae-aec2-54966b018c33)
+
+![image](https://github.com/user-attachments/assets/8f28249d-ab22-4c84-b0eb-ea43523e7e39)
+
 ---
 
 ## Features
